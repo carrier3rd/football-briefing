@@ -1,0 +1,64 @@
+{
+  "updated": "2026-11-05T08:54:00-05:00",
+  "briefings": [
+    {
+      "date": "2026-11-05",
+      "headline": "Valverde wins it at 90+2 in Athens; Madrid and PSG both perfect in the UCL",
+      "sections": [
+        {
+          "title": "🏆 Champions League",
+          "items": [
+            "**AEK Athens 2–3 Real Madrid** (Wed, Athens). Madrid trailed twice and won it in stoppage time.",
+            "Koita 12' (AEK) → **Bellingham** 32' → Pilios 75' (AEK) → **Mbappé** 78' (from a **Dumfries** cross) → **Valverde** 90+2' (assisted by **Brahim**).",
+            "Madrid had 70% of the ball and 3.35 xG to AEK's 0.86, so it shouldn't have been this stressful. Koita was sent off after the final whistle for arguing with the referee.",
+            "**Mbappé** has now scored in 6 straight UCL games.",
+            "**Table after MD4:** **PSG** 1st (12 pts, +15), **Real Madrid** 2nd (12 pts, +6). PSG's 6–0 at Villarreal on Tuesday (4 goals in 17 minutes, a UCL record) gives them the goal-difference edge.",
+            "**Next:** Real Madrid vs. PSV on Tue 11/24, PSG vs. Roma on Wed 11/25. Both 3:00 PM ET on Paramount+."
+          ]
+        },
+        {
+          "title": "🏛️ Real Madrid & PSG",
+          "items": [
+            "**Real Madrid** are without **Rodrygo** (knee, aiming for early 2027), **Mendy** (thigh) and **Asencio** (stress fracture, about 3 months out).",
+            "**Vinícius** serves the last game of his domestic ban on Saturday and should be back vs. Celta on 11/21.",
+            "**PSG vs. Troyes** moved from 20:45 to 21:05 Paris time, a knock-on from a schedule change in another Ligue 1 game."
+          ]
+        },
+        {
+          "title": "🇫🇷 Les Bleus",
+          "items": [
+            "**Zidane** names his squad Fri 11/6 at 18:00 Paris / 12:00 PM ET.",
+            "**Italy vs. France** Thu 11/12 at San Siro, then **France vs. Türkiye** Sun 11/15 in Bordeaux. Both 20:45 local / 2:45 PM ET. UEFA lists Fubo (pay-per-view) and ViX as its US partners."
+          ]
+        },
+        {
+          "title": "⚽ Elsewhere",
+          "items": [
+            "**Como** won **9–1 at Lens** with a **Douvikas** hat-trick, tying the record for the biggest winning margin in the Champions League.",
+            "**Fenerbahçe 3–2 Liverpool**, with **Muriqi** heading the winner. Liverpool drop to 8th."
+          ]
+        },
+        {
+          "title": "📅 Upcoming",
+          "items": [
+            "**Sat 11/7 · Valencia vs. Real Madrid**, Mestalla: 21:00 local / **3:00 PM ET**. ESPN+ / ESPN Deportes, no free option announced.",
+            "**Sat 11/7 · PSG vs. Troyes**, Parc des Princes: 21:05 local / **3:05 PM ET** on beIN Sports. Overlaps with Madrid, so plan on two screens."
+          ]
+        }
+      ],
+      "calendar": "All fixtures were already correct. Added venue, kickoff and TV details to the two France games and the Valencia game.",
+      "sources": [
+        {"title": "ESPN – AEK 2-3 Real Madrid", "url": "https://www.espn.com/soccer/match/_/gameId/401915383/real-madrid-aek-athens"},
+        {"title": "Sports Encounter recap", "url": "https://thesportsencounter.com/2026/11/05/champions-league-results-november-4-2026-real-madrid-liverpool-como/"},
+        {"title": "KSAT/AP", "url": "https://www.ksat.com/news/2026/11/04/champions-league-real-madrid-and-liverpool-defending-perfect-records/"},
+        {"title": "UEFA fixtures", "url": "https://www.uefa.com/uefachampionsleague/news/02a8-2174c9e9019d-f909a77bd77a-1000--2026-27-champions-league-all-the-league-phase-fixtures-a/"},
+        {"title": "Sports Mole injuries", "url": "https://www.sportsmole.co.uk/football/real-madrid/injury-news/injuries-and-suspensions/vinicius-rodrygo-updates-real-madrid-injury-suspension-news-vs-valencia_608458.html"},
+        {"title": "Real Madrid – Valencia kickoff", "url": "https://www.realmadrid.com/de-DE/news/fussball/erste-mannshaft/latest-news/el-valencia-real-madrid-se-jugara-el-sabado-7-de-noviembre-a-las-21-00-h-12-10-2026"},
+        {"title": "Foot-sur7 – PSG-Troyes time", "url": "https://www.foot-sur7.fr/792086-psg-troyes-la-lfp-annonce-un-changement-ce-samedi-soir"},
+        {"title": "PSG fixtures", "url": "https://www.psg.fr/en/mens-football/fixtures"},
+        {"title": "FFF – squad date", "url": "https://www.fff.fr/article/17631-la-liste-de-zinedine-zidane-le-6-novembre.html"},
+        {"title": "Bolavip – US TV", "url": "https://bolavip.com/en/soccer/turkiye-vs-italy-how-to-watch-live-stream-tv-channel-and-time-for-uefa-nations-league-game-on-september-28-2026"}
+      ]
+    }
+  ]
+}

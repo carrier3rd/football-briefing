@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Football Briefing</title>
+<meta name="description" content="Daily Real Madrid, PSG, Les Bleus and Champions League briefing.">
+<style>
+  :root {
+    --bg: #f6f5f1; --card: #ffffff; --ink: #1b1d22; --muted: #646a73;
+    --line: #e3e1da; --accent: #1f4fd1; --gold: #b8860b; --chip: #eef1fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101216; --card: #181b21; --ink: #e9eaec; --muted: #9aa1ab;
+      --line: #2a2e36; --accent: #7aa2ff; --gold: #e2b84c; --chip: #1f2533;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101216; --card: #181b21; --ink: #e9eaec; --muted: #9aa1ab;
+    --line: #2a2e36; --accent: #7aa2ff; --gold: #e2b84c; --chip: #1f2533;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 20px 16px 64px; }
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h1 { font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: .9rem; }
+  nav { display: flex; gap: 6px; overflow-x: auto; padding: 14px 0 6px; scrollbar-width: none; }
+  nav button {
+    flex: none; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 999px; padding: 6px 12px; font: inherit; font-size: .85rem; cursor: pointer;
+  }
+  nav button[aria-current="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  article { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 8px; margin-top: 10px; }
+  .date { color: var(--gold); font-weight: 600; font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+  h2 { font-size: 1.2rem; line-height: 1.3; margin: 4px 0 8px; }
+  h3 { font-size: 1rem; margin: 18px 0 6px; padding-top: 12px; border-top: 1px solid var(--line); }
+  ul { margin: 0; padding-left: 1.1em; }
+  li { margin: 4px 0; }
+  a { color: var(--accent); }
+  .cal { background: var(--chip); border-radius: 10px; padding: 8px 12px; margin: 16px 0 10px; font-size: .9rem; }
+  details { margin: 10px 0 12px; font-size: .85rem; color: var(--muted); }
+  summary { cursor: pointer; }
+  details ul { margin-top: 6px; }
+  .empty { color: var(--muted); padding: 40px 0; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>⚽ Football Briefing</h1>
+    <span class="sub" id="updated"></span>
+  </header>
+  <nav id="days" aria-label="Briefings by date"></nav>
+  <main id="view"><p class="empty">Loading…</p></main>
+</div>
+<script>
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Minimal inline markdown: **bold** and [text](https://url)
+const md = s => esc(s)
+  .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" rel="noopener" target="_blank">$1</a>');
+const fmtDate = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+const shortDate = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+function render(b) {
+  const secs = (b.sections || []).map(s =>
+    `<h3>${esc(s.title)}</h3><ul>${(s.items || []).map(i => `<li>${md(i)}</li>`).join('')}</ul>`).join('');
+  const cal = b.calendar ? `<div class="cal">📆 ${md(b.calendar)}</div>` : '';
+  const src = (b.sources || []).length
+    ? `<details><summary>Sources (${b.sources.length})</summary><ul>${b.sources.map(s =>
+        `<li><a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.title)}</a></li>`).join('')}</ul></details>` : '';
+  return `<article><div class="date">${fmtDate(b.date)}</div><h2>${md(b.headline || '')}</h2>${secs}${cal}${src}</article>`;
+}
+
+fetch('briefings.json', { cache: 'no-store' })
+  .then(r => r.json())
+  .then(data => {
+    const list = (data.briefings || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+    const view = document.getElementById('view'), nav = document.getElementById('days');
+    if (data.updated) document.getElementById('updated').textContent =
+      'Updated ' + new Date(data.updated).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    if (!list.length) { view.innerHTML = '<p class="empty">No briefings yet.</p>'; return; }
+    const show = d => {
+      const b = list.find(x => x.date === d) || list[0];
+      view.innerHTML = render(b);
+      nav.querySelectorAll('button').forEach(el => el.setAttribute('aria-current', el.dataset.d === b.date));
+      history.replaceState(null, '', b === list[0] ? location.pathname : '#' + b.date);
+    };
+    nav.innerHTML = list.map((b, i) => `<button data-d="${b.date}">${i === 0 ? 'Latest' : shortDate(b.date)}</button>`).join('');
+    nav.addEventListener('click', e => { const d = e.target.dataset && e.target.dataset.d; if (d) show(d); });
+    show(location.hash.slice(1));
+  })
+  .catch(() => { document.getElementById('view').innerHTML = '<p class="empty">Couldn\'t load briefings.</p>'; });
+</script>
+</body>
+</html>
